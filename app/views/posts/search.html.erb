@@ -1,0 +1,30 @@
+<%= render partial: "/partials/header" %>
+<h2 class="container-fluid text-center m-3 font-italic">Looking for something?</h2> 
+<div class="conatiner d-flex justify-content-center">
+    <%= form_for(:query, html: {class: "form-inline d-flex"}) do |f|%>
+        <%= f.text_field :keywords, class: "form-control m-1", placeholder: "Type here" %>
+        <%= f.submit "Search", class: "form-contol btn btn-success m-1"%>
+        <%= f.label " in:", class: "mx-2"%>
+        <select name="in" class="form-control">
+            <option value="1"> Everywhere </option>
+            <option value="2"> Authors </option>
+            <option value="3"> Titles </option>
+            <option value="4"> Categories </option>
+        </select>
+    <% end %>
+</div>
+<hr>
+<% unless @results.nil? %>
+    <% if @results.empty? %>
+        <h2 class="container-fluid text-center m-3 font-italic">There are no results.</h2> 
+    <% else %>
+        <h2 class="container-fluid text-center m-3 font-italic">Results:</h2>
+        <div class="container">
+            <% @results.each do |p|%>
+                <% @post = p %>
+                <%= render partial: "/partials/post/post-with-footer" %>
+                <% @post = nil %>
+            <% end %> 
+        </div>
+    <% end %>
+<% end %>

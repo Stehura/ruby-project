@@ -1,0 +1,24 @@
+<%= render partial: "partials/header" %>
+<% if session[:user_id].nil? %>
+    <%= render partial: "partials/login-or-reg"%>
+<% else %>
+    <h2 class="container-fluid text-center mb-1 font-italic">New Comment</h2>
+    <% unless @comment.nil? %>
+        <div class="alert alert-danger">
+            <ul>
+                <% @comment.errors.full_messages.each do |m|%>
+                    <li> <%= m %> </li>
+                <% end %>
+            </ul>
+        </div>
+    <% end %>
+    <div class="container-fluid px-5">
+        <%= form_for :comment do |f| %>
+            <div class="form-group mx-5 px-5">
+                <span>Text:</span>
+                <%= f.text_area :text, :class => "form-control", :required => "true"%>
+                <%= f.submit "Leave Comment", :class => "btn-success my-1 btn form-control" %>
+            </div>
+        <% end %>
+    </div>
+<% end %>

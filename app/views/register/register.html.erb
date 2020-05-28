@@ -1,0 +1,29 @@
+<%= render partial: "partials/header"%>
+<div class="container px-5">
+    <h2 class="container-fluid text-center mb-1 font-italic">Register</h2>        
+    <% if !@user.nil? %>
+        <div class="alert alert-danger">
+            <ul>
+                <% @user.errors.full_messages.each do |m|%>
+                <li>
+                    <%= m %>
+                </li>
+                <% end %>
+            </ul>
+        </div>
+        <% @user = nil %>
+    <% end %>
+    <%= form_for :user do |f| %>
+        <div class="form-group mx-5 px-5 mb-0">
+            <span> Username: </span>
+            <%= f.text_field :username, :class => "form-control", :required => "true"%>
+
+            <span>Password:</span>
+            <%= f.text_field :password, :class => "form-control", :required => "true", :type => "password"%>
+            
+            <span>Confirm password:</span>
+            <%= f.text_field :confirm, :class => "form-control", :required => "true", :type => "password"%>
+            <%= f.submit "Register me!", :class => "btn-success my-1 btn form-control font-italic" %>
+        </div>
+    <% end %>
+</div>

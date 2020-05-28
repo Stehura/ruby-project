@@ -1,0 +1,36 @@
+<%= render partial: "partials/header" %>
+<div class="container">
+    <div class="card m-1">
+            <% unless session[:user_id].nil?%>
+                <% if @post.user.id == session[:user_id] %>
+                    <%= render partial: "partials/post/headers/post-header-edit-delete"%>
+                <% end %>
+            <% end %>
+            <%= render partial: "partials/post/bodies/post-body" %>
+            <%= render partial: "partials/post/footers/post-footer-see-all" %>
+    </div>
+    <div class="alert alert-info mx-1">
+        <div class="d-flex justify-content-between alert alert-secondary">
+            <div class="d-flex">
+                <h3> Comments: </h3>
+            </div>
+            <div class="d-flex">
+                <%= link_to "Leave Comment", :new_comment, class: "d-flex btn btn-success" %>
+            </div>
+        </div>
+        <div class="container">
+            <% @post.comments.each do |c|%>
+                <% @comment = c%>
+                <div class="card m-1">
+                    <% unless session[:user_id].nil?%>
+                        <% if @comment.user.id == session[:user_id] %>
+                            <%= render partial: "partials/comment/headers/comment-header-edit-delete"%>
+                        <% end %>
+                    <% end %>
+                    <%= render partial: "partials/comment/bodies/comment-body"%>
+                </div>
+                <% @comment = nil %>
+            <% end %>
+        </div>
+    </div>
+</div>

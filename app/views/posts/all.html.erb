@@ -1,0 +1,33 @@
+<%= render partial: 'partials/header'%>
+
+<div class = "container-fluid d-flex justify-items-between alert alert-info">
+    <div class = "container d-flex flex-row">
+        <h3> Do you want to tell something? </h3>
+        <%= link_to "Add a post!", :new_post, :class => "btn btn-success mx-1 font-italic"%>
+    </div>
+    <div class = "container d-flex flex-row">
+        <h3> What are you looking for? </h3>
+        <%= link_to "Search something!", :search, :class => "btn btn-primary mx-1 font-italic"%>
+    </div>
+</div>
+<div class="container border rounded pb-3">
+    <h2>
+        All posts:
+    </h2>
+    <div class="d-flex flex-column-reverse">
+        <% @posts.each do |p|%>
+            <% @post = p %>
+            <div class="card m-1">
+                <% unless session[:user_id].nil?%>
+                    <% if @post.user.id == session[:user_id] %>
+                        <%= render partial: "partials/post/headers/post-header-edit-delete"%>
+                    <% end %>
+                <% end %>
+                <%= render partial: "partials/post/bodies/post-body" %>
+                <%= render partial: "partials/post/footers/post-footer-see-comment"%>
+            </div>
+            <% @post = nil %>
+        <% end %>
+    </div>
+</div>
+

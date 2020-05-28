@@ -1,0 +1,5 @@
+<div class="card-header d-flex justify-content-end alert-secondary">
+    <%= link_to "Edit", edit_comment_url({ id: @post.id, comment_id: @comment.id}),
+        class: "btn btn-warning my-0 mx-1"%>
+    <%= link_to "Delete", delete_comment_url({ id: @post.id, comment_id: @comment.id}), method: "DELETE", class: "btn btn-danger my-0 mx-1"%>
+</div>

@@ -1,0 +1,12 @@
+<div class="container">
+        <div class="container alert alert-danger">
+            <h3>Only authorized users can do this action. Please, sign in or register.</h3>
+        </div>
+        
+        <%= button_to "Sign in", :login_url , method: "get",
+                :class => "btn btn-success font-italic form-control"%>
+        <p class="container-fluid text-center mb-1 text-secondary">or</p>        
+        <%= button_to "Register", :register_url , method: "get",
+                :class => "btn btn-info font-italic form-control"%>
+        </div>
+</div>

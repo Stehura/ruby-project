@@ -1,0 +1,18 @@
+<%= render partial: "partials/header"%>
+<% if session[:user_id].nil? %>
+    <%= render partial: "partials/login-or-reg"%>
+<% else %>
+    <h2 class="container-fluid text-center mb-1 font-italic">New post</h2>
+    <% unless @post.nil? %>
+        <div class="alert alert-danger">
+            <ul>
+                <% @post.errors.full_messages.each do |m|%>
+                <li>
+                    <%= m %>
+                </li>
+                <% end %>
+            </ul>
+        </div>
+    <% end %>
+    <%= render partial: 'partials/form' %>
+<% end %>

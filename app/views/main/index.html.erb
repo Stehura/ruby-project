@@ -1,0 +1,19 @@
+<%= render partial: "partials/header"%>
+<h2 class="container-fluid text-center mb-1 font-italic">Main</h2>        
+<div class="container-fluid">
+    <% unless session[:user_id].nil? %>
+        <div class="alert alert-success">
+            <h2>Hello, <%= User.find(session[:user_id]).username %>!</h2>
+        </div>
+    <% end %>
+    <h3> Some actions: </h3>
+    <ul>
+        <li> <%= link_to "See posts", :all_posts %> </li>
+        <li> <%= link_to "Search posts", :search %> </li>
+        <% if session[:user_id].nil?%>
+            <li> <%= link_to "Log in", :login_url %> </li>
+        <% else %>
+            <li> <%= link_to "Log out", :logout_url, method: "POST" %> </li>
+        <% end %>
+    </ul>
+</div>

@@ -1,0 +1,11 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\app",
+    "\\app\\controllers",
+    "\\app\\views",
+    "\\app\\views\\partials"
+  ],
+  "SelectedNode": "\\app\\controllers\\login_controller.rb",
+  "PreviewInSolutionExplorer": false
+}
